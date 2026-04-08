@@ -61,7 +61,9 @@ def generate_content_loop(client, messages, config, verbose_flag, max_iterations
         messages.append(response.candidates[0].content)
         if verbose_flag:
             print(
-                f"Iteration {iteration + 1} - Prompt: {response.usage_metadata.prompt_token_count}, Resp: {response.usage_metadata.candidates_token_count}")
+                f"- Iteration {iteration + 1} "
+                f"- Prompt: {response.usage_metadata.prompt_token_count} "
+                f"- Resp: {response.usage_metadata.candidates_token_count}")
 
         # 2. Final agent text message
         # 텍스트 응답이 있으면 종료 (도구 호출과 동시에 텍스트가 올 수도 있으나 보통은 분리됨)
@@ -73,7 +75,8 @@ def generate_content_loop(client, messages, config, verbose_flag, max_iterations
         # 3. 함수 호출 처리
         if response.function_calls:
             if verbose_flag:
-                print(f"AI Thinking: {response.text}")
+                print(f"AI Thinking...: {response.text}")
+
             tool_parts = []
             for function_call_part in response.function_calls:
                 function_call_result = call_function(function_call_part, verbose_flag)
