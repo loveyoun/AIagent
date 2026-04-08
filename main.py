@@ -22,6 +22,15 @@ def main():
         if not arg.startswith("--"):
             args.append(arg)
 
+    # parser = argparse.ArgumentParser(description="Gemini Agent Loop")
+    # # --verbose 옵션 설정
+    # parser.add_argument(
+    #     '--verbose',
+    #     action='store_true',  # --verbose True x
+    #     help='디버깅을 위한 상세 로그를 출력합니다.'
+    # )
+    # args = parser.parse_args()  # args.verbose == True or False
+
     if not args:
         print("AI Code Assistant")
         print('\nUsage: python main.py "your prompt here" [--verbose]')
@@ -75,9 +84,7 @@ def generate_content_loop(client, messages, config, verbose_flag, max_iterations
             #     print(f"Calling function: {function_call_part.name}({function_call_part.args})")
 
     else:  # After all for-iterations
-        print( f"최대 반복 횟수({max_iterations})에 도달했습니다. 에이전트가 작업을 완료하지 못했을 수 있습니다.")
-
-
+        print(f"최대 반복 횟수({max_iterations})에 도달했습니다. 에이전트가 작업을 완료하지 못했을 수 있습니다.")
 
 
 if __name__ == "__main__":
